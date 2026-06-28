@@ -1,27 +1,28 @@
-// @ts-ignore
-import psychrolib from 'psychrolib';
-//ASHRAE（米国暖房冷凍空調学会）基準値
-psychrolib.SetUnitSystem(psychrolib.SI);
-let t = 30; //乾球温度
-let RHa = 50; //相対湿度
-let RH = 0;
-let sikkyu = 12; //湿球温度 
-RH = RHa * 0.01;
-let Pressure = 101325;
-let Dew = psychrolib.GetTDewPointFromRelHum(t, RH); //露点温度=乾球_相対
-let RH1 = psychrolib.GetRelHumFromTWetBulb(t, sikkyu, Pressure); //相対湿度＝乾球_湿球_気圧 
-let RH1a = RH1 * 100;
-let Dew_1 = psychrolib.GetTDewPointFromTWetBulb(t, sikkyu, Pressure);
-let h = psychrolib.GetHumRatioFromRelHum(t, RH, Pressure);
-let ent = psychrolib.GetMoistAirEnthalpy(t, h);
-let enta = ent / 1000;
-//テスト
+import { HTMLMOV } from './HTMLMOV.js';
+let btn = document.getElementById("btn");
+btn.onclick = function () {
+    psychrolib.SetUnitSystem(psychrolib.SI);
+    // 入力値
+    let t = HTMLMOV.get_num("main_t"); // 乾球温度
+    let RHa = HTMLMOV.get_num("main_RHa"); // 相対湿度(%)
+    let RH = RHa / 100; // 計算用(0.0〜1.0)
+    let Pressure = 101325;
+    let [h, WetBulb, Dew, VapPres, ent, vol, degSat] = psychrolib.CalcPsychrometricsFromRelHum(t, RH, Pressure);
+    // エンタルピをkJ/kg
+    let enta = ent / 1000;
+    HTMLMOV.set_num("main_h", h);
+    HTMLMOV.set_num("main_WetBulb", WetBulb);
+    HTMLMOV.set_num("main_Dew", Dew);
+    HTMLMOV.set_num("main_enta", enta);
+    HTMLMOV.set_num("main_VapPres", VapPres);
+};
+/*テスト
 console.log("乾球温度：", t, "℃");
-console.log("湿球温度：", sikkyu, "℃");
 console.log("相対湿度：", RHa, "%");
-console.log("気圧：", Pressure, "Pa");
-console.log('露点温度1:', Dew, "℃  ※露点1=乾球_相対");
-console.log("露点温度2:", Dew_1, "℃　※　露点2=乾球温度_湿球温度");
-console.log("相対湿度:", RH1a, "%  ※相対湿度＝乾球_湿球");
-console.log("絶対湿度:", h, "kg/kg ※絶対湿度=乾球_相対");
-console.log("エンタルピ:", enta, "※ エンタルピ=乾球温度_湿度比(絶対湿度)");
+
+console.log("絶対湿度:", h, "kg/kg");
+console.log("湿球温度:", WetBulb, "℃"); // 追加
+console.log("露点温度:", Dew, "℃");
+console.log("エンタルピ:", enta, "kJ/kg");
+console.log("水蒸気圧:", VapPres, "Pa");
+*/
