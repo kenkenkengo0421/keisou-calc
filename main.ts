@@ -1,7 +1,7 @@
 declare const psychrolib: any;
 import { HTMLMOV } from './HTMLMOV.js';
 
-let btn = document.getElementById("btn") as HTMLElement;
+let btn = document.getElementById("main_btn") as HTMLElement;
 btn.onclick = function() {
   psychrolib.SetUnitSystem(psychrolib.SI);
 

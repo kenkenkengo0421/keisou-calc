@@ -44,11 +44,11 @@ table {
 <tr>
   <td>相対湿度</td>
   <td><input type="number" id="main_RHa" value="50"></td>
-  <td>％</td>
+  <td>℃　</td>
 </tr>
 </table> 
 
-<button id="btn">出力</button>
+<button id="main_btn">出力</button>
 
 出力結果項目
 
@@ -94,6 +94,80 @@ table {
 
 <script src="./node_modules/psychrolib/psychrolib.js"></script>
 <script type="module" src="main.js"></script>
+
+      <code>
+         <pre>
+
+
+[乾球温度]と[湿球温度]から各項目の値を出力する
+
+入力項目
+
+<table border="1"><tr>
+  <th>名称</th>
+  <th>入力値</th>
+  <th>単位</th>
+</tr>
+
+<tr>
+  <td>乾球温度</td>
+  <td><input type="number" id="sub_t" value="25.5"></td>
+  <td>℃ </td>
+</tr>
+
+<tr>
+  <td>湿球温度</td>
+  <td><input type="number" id="sub_WetBulb" value="20"></td>
+  <td>％</td>
+</tr>
+</table> 
+
+<button id="sub_btn">出力</button>
+
+出力結果項目
+
+<table border="1">
+<tr>
+  <th>名称</th>
+  <th>出力値</th>
+  <th>単位</th>
+</tr>
+
+<tr>
+  <td>相対湿度</td>
+  <td><span id="sub_RHa"></span></td>
+  <td>%</td>
+</tr>
+
+<tr>
+  <td>絶対湿度</td>
+  <td><span id="sub_h"></span></td>
+  <td>kg/kg</td>
+</tr> 
+
+<tr>
+  <td>露点温度</td>
+  <td><span id="sub_Dew"></span></td>
+  <td>℃ </td>
+</tr>
+
+<tr>
+  <td>エンタルピ</td>
+  <td><span id="sub_enta"></span></td>
+  <td>kJ/kg</td>
+</tr>
+
+<tr>
+  <td>水蒸気圧</td>
+  <td><span id="sub_VapPres"></span></td>
+  <td>Pa</td>
+</tr>
+</table>
+        </code>
+      </pre>
+
+<script src="./node_modules/psychrolib/psychrolib.js"></script>
+<script type="module" src="sub.js"></script>
 
 
     </main>
