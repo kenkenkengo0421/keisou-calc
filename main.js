@@ -10,11 +10,11 @@ btn.onclick = function () {
     let [h, WetBulb, Dew, VapPres, ent, vol, degSat] = psychrolib.CalcPsychrometricsFromRelHum(t, RH, Pressure);
     // エンタルピをkJ/kg
     let enta = ent / 1000;
-    HTMLMOV.set_num("main_h", h);
-    HTMLMOV.set_num("main_WetBulb", WetBulb);
-    HTMLMOV.set_num("main_Dew", Dew);
-    HTMLMOV.set_num("main_enta", enta);
-    HTMLMOV.set_num("main_VapPres", VapPres);
+    HTMLMOV.set_num("main_h", Number(h.toFixed(4)));
+    HTMLMOV.set_num("main_WetBulb", Number(WetBulb.toFixed(1)));
+    HTMLMOV.set_num("main_Dew", Number(Dew.toFixed(1)));
+    HTMLMOV.set_num("main_enta", Number(enta.toFixed(1)));
+    HTMLMOV.set_num("main_VapPres", Number(VapPres.toFixed(1)));
 };
 /*テスト
 console.log("乾球温度：", t, "℃");

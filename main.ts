@@ -15,13 +15,12 @@ btn.onclick = function() {
 
 // エンタルピをkJ/kg
   let enta: number = ent / 1000;
-  
-  HTMLMOV.set_num("main_h",h );
-  HTMLMOV.set_num("main_WetBulb",WetBulb );
-  HTMLMOV.set_num("main_Dew",Dew );
-  HTMLMOV.set_num("main_enta",enta);
-  HTMLMOV.set_num("main_VapPres",VapPres );
-
+  HTMLMOV.set_num("main_h", Number(h.toFixed(4)));
+  HTMLMOV.set_num("main_WetBulb", Number(WetBulb.toFixed(1)));
+  HTMLMOV.set_num("main_Dew", Number(Dew.toFixed(1)));
+  HTMLMOV.set_num("main_enta", Number(enta.toFixed(1)));
+  HTMLMOV.set_num("main_VapPres", Number(VapPres.toFixed(1)));
+ 
 }
 
 
